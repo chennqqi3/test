@@ -1,0 +1,55 @@
+'''
+Created on Oct 16, 2014
+
+@author: deldong
+'''
+# -*- coding: UTF-8 -*-
+import sys#因为系统是英文系统，打汉字的话，必须用添加# -*- coding: UTF-8 -*-
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
+# 导入所需的方法
+from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
+
+#连接我的Nokia手机
+print ("Connecting device.....")
+NokiaDevice = MonkeyRunner.waitForConnection()
+if not NokiaDevice:
+    print ("Please connect a device to start!")
+else:
+    print ("Device Connected successfully!")
+
+#安装apk
+try:
+    NokiaDevice.installPackage('C:/apps/MyFirstApp.apk')
+    print ("Package installed successfully! ")
+except:
+    print ("Package installation failed!")
+
+#设置包名
+package = 'com.example.myfirstapp'
+
+#设置activity名
+activity = 'com.example.myfirstapp.MainActivity'
+
+#循环执行四次
+for i in range(1,5):
+    #打开已安装的应用
+    print ("Open installed package for the %d time"%i)
+    NokiaDevice.startActivity(component=package + '/' + activity)
+    #等待5秒
+    print ("wait 5 sec")
+    MonkeyRunner.sleep(5)
+    #关闭应用
+    print("Quit the application")
+    NokiaDevice.press("KEYCODE_BACK",NokiaDevice.DOWN_AND_UP)
+    print ("wait 5 sec")
+    MonkeyRunner.sleep(5)
+
+#卸载APK
+try:
+    print("Uninstall package!")
+    NokiaDevice.removePackage("com.example.myfirstapp")
+    print("Uninstall package successfully")
+except:
+    print ("Package unintall failed!")
