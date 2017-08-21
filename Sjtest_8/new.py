@@ -13,26 +13,46 @@ from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
 #连接我的Nokia手机
 print ("Connecting device.....")
-NokiaDevice = MonkeyRunner.waitForConnection()
-if not NokiaDevice:
+Device = MonkeyRunner.waitForConnection()
+if not Device:
     print ("Please connect a device to start!")
 else:
     print ("Device Connected successfully!")
 
-#重启设备
-print("Reboot device!")
-NokiaDevice.reboot()
-MonkeyRunner.sleep(60)
-
 #唤醒设备
 print("Wake device")
-NokiaDevice.wake()
+Device.wake()
+print("wait 2s")
+MonkeyRunner.sleep(2)
+ 
+#滑动解锁设备   这个解锁怎么不成功啊  是滑动哪里不对吗
+print("Unlock the screen")
+Device.drag((0,0),(1000,1000),1,100)
 print("wait 2s")
 MonkeyRunner.sleep(2)
 
-#解锁 输入密码
-print("unlock device....")
-NokiaDevice.drag((400,700),(400,300),0.1,10)
-MonkeyRunner.sleep(5)
-NokiaDevice.type('201449')
-print("unlock successfully")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
