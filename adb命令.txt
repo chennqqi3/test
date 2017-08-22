@@ -1,0 +1,38 @@
+adb shell input keyevent  3     模拟按键命令 回到桌面  不同的数字代表不同的按键
+
+adb shell am start -W 包名         启动一些包
+adb shell pm clear 包名           彻底杀掉运行的应用
+
+
+adb shell pm list packages：列出所有的包名。
+
+adb logcat | grep ActivityManager：查看当前正在运行的Activity
+adb logcat | grep Displayed：查看当前正在运行的Activity
+
+!!!!adb shell dumpsys window w |findstr \/ |findstr name=  获取当前手机运行的activity
+!!!!!!!!!!!!!!!!!!!!adb logcat | findstr Displayed        最好用的获得当前Activity的命令！！！！！！！！！！！！！！！！！！！！！！！！
+adb shell logcat |findstr "cmp="
+
+
+adb shell pm list permissions -d -g 查看权限  权限管理
+
+
+
+adb shell pm grant <pkg.name> android.permission.READ_LOGS  赋予权限
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
